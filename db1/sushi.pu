@@ -1,0 +1,93 @@
+@startuml
+entity Sushi {
+  * ID: uint
+  --
+  * name : string
+  * price: number
+  * is_wasabi: boolean
+  * sushisize_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SushiSize {
+  * ID: uint
+  --
+  * size : string
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Set {
+  * ID: uint
+  --
+  * price: number
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SetSushi {
+  * ID: uint
+  --
+  * sushi_id : number <<FK>>
+  * set_id : number <<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Order {
+  * ID: uint
+  --
+  * total_price: number
+  * customer_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SetOrderItems {
+  * ID: uint
+  --
+  * order_id: number<<FK>>
+  * set_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SushiOrderItems {
+  * ID: uint
+  --
+  * order_id: number<<FK>>
+  * set_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Customer {
+  * ID: uint
+  --
+  name: string
+  phone_number: number
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+
+Order }|--l-- Customer
+SetOrderItems }o-- Order
+SushiOrderItems }o-- Order
+
+SetSushi }o-- Sushi 
+SushiSize||-- Sushi
+SetSushi }o-- Set
+
+SetOrderItems }|-l- Set
+SushiOrderItems }|-l- Sushi
+@enduml
