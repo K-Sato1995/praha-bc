@@ -32,6 +32,7 @@ entity SetSushi {
 entity Order {
   * ID: uint
   --
+  * total_price: number
   * customer_id: number<<FK>>
   --
   * created_at: DateTime
