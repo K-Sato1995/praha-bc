@@ -1,0 +1,80 @@
+@startuml
+entity Sushi {
+  * ID: uint
+  --
+  * name : string
+  * price: number
+  * is_wasabi: boolean
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Set {
+  * ID: uint
+  --
+  * price: number
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SetSushi {
+  * ID: uint
+  --
+  * sushi_id : number <<FK>>
+  * set_id : number <<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Order {
+  * ID: uint
+  --
+  * customer_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SetOrderItems {
+  * ID: uint
+  --
+  * order_id: number<<FK>>
+  * set_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SushiOrderItems {
+  * ID: uint
+  --
+  * order_id: number<<FK>>
+  * set_id: number<<FK>>
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity Customer {
+  * ID: uint
+  --
+  name: string
+  phone_number: number
+  --
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+Sushi }o-- SetSushi
+Set }o-- SetSushi
+
+Customer }|-- Order
+Order }o-- SetOrderItems
+Order }o-- SushiOrderItems
+
+SetOrderItems }|-- Set
+SushiOrderItems }|-- Sushi
+@enduml
