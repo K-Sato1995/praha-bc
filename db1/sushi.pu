@@ -6,6 +6,16 @@ entity Sushi {
   * price: number
   * is_wasabi: boolean
   --
+  * sushisize_id: number<<FK>>
+  * created_at: DateTime
+  * updated_at: DateTime
+}
+
+entity SushiSize {
+  * ID: uint
+  --
+  * size : string
+  --
   * created_at: DateTime
   * updated_at: DateTime
 }
@@ -70,6 +80,7 @@ entity Customer {
 }
 
 Sushi }o-- SetSushi
+Sushi ||-- SushiSize
 Set }o-- SetSushi
 
 Customer }|-- Order
