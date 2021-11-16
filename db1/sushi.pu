@@ -5,8 +5,8 @@ entity Sushi {
   * name : string
   * price: number
   * is_wasabi: boolean
-  --
   * sushisize_id: number<<FK>>
+  --
   * created_at: DateTime
   * updated_at: DateTime
 }
@@ -79,14 +79,15 @@ entity Customer {
   * updated_at: DateTime
 }
 
-Sushi }o-- SetSushi
-Sushi ||-- SushiSize
-Set }o-- SetSushi
 
-Customer }|-- Order
-Order }o-- SetOrderItems
-Order }o-- SushiOrderItems
+Order }|--l-- Customer
+SetOrderItems }o-- Order
+SushiOrderItems }o-- Order
 
-SetOrderItems }|-- Set
-SushiOrderItems }|-- Sushi
+SetSushi }o-- Sushi 
+SushiSize||-- Sushi
+SetSushi }o-- Set
+
+SetOrderItems }|-l- Set
+SushiOrderItems }|-l- Sushi
 @enduml
